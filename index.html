@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opening GreenScan...</title>
+    <title>GreenScan - Plant Identification App</title>
     <style>
         * {
             margin: 0;
@@ -15,210 +15,243 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: linear-gradient(135deg, #02542D 0%, #4CAF50 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-            padding: 20px;
         }
         
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
             text-align: center;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 60px 20px 40px;
         }
         
         .logo {
-            font-size: 64px;
+            font-size: 80px;
             margin-bottom: 20px;
-            animation: bounce 2s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
         
-        @keyframes bounce {
+        @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-20px); }
         }
         
         h1 {
-            font-size: 28px;
+            font-size: 48px;
             font-weight: 700;
             margin-bottom: 15px;
         }
         
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 25px auto;
+        .tagline {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
         }
         
-        .info {
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
             font-size: 16px;
-            margin: 20px 0;
-            opacity: 0.95;
-        }
-        
-        .manual-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: white;
-            color: #02542D;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .manual-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        .secondary-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #E2F2E5;
-            text-decoration: underline;
-            font-size: 14px;
-        }
-        
-        .note {
-            margin-top: 30px;
-            font-size: 13px;
-            opacity: 0.8;
+            opacity: 0.9;
             line-height: 1.6;
         }
         
-        .status {
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: white;
+            color: #02542D;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .download-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.8;
             font-size: 14px;
-            font-family: monospace;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .demo-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .screenshot {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">🌱</div>
-        <h1>Opening GreenScan...</h1>
-        <div class="spinner"></div>
-        <p class="info">Redirecting to the app</p>
-        
-        <a href="#" id="manual-link" class="manual-link">
-            📱 Tap here if app doesn't open
-        </a>
-        
-        <p class="note">
-            <strong>Don't have GreenScan?</strong><br>
-            <a href="#" class="secondary-link" id="store-link">Download from App Store</a>
-        </p>
-        
-        <div class="status" id="status">
-            Preparing deep link...
-        </div>
+        <header>
+            <div class="logo">🌱</div>
+            <h1>GreenScan</h1>
+            <p class="tagline">Discover, Identify & Share Plants with the Community</p>
+        </header>
+
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">📸</div>
+                <h3>Instant Identification</h3>
+                <p>Take a photo of any plant and get instant AI-powered identification with detailed information.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🗺️</div>
+                <h3>Community Map</h3>
+                <p>See plants discovered by the community on an interactive map. Share your findings with others!</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📚</div>
+                <h3>Rich Database</h3>
+                <p>Access detailed taxonomic information, distribution data, and scientific descriptions for every plant.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Insights</h3>
+                <p>Get fun facts, care tips, and interesting information about plants powered by artificial intelligence.</p>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>How It Works</h2>
+            <p>Identify plants in 3 simple steps:</p>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px;">
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 10px;">1️⃣</div>
+                    <p><strong>Capture</strong><br>Take or upload a photo</p>
+                </div>
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 10px;">2️⃣</div>
+                    <p><strong>Identify</strong><br>AI analyzes the plant</p>
+                </div>
+                <div>
+                    <div style="font-size: 48px; margin-bottom: 10px;">3️⃣</div>
+                    <p><strong>Discover</strong><br>Learn and share</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">Ready to Start Exploring?</h2>
+            <p style="font-size: 18px; opacity: 0.9; margin-bottom: 20px;">
+                Download GreenScan now and join our community of plant enthusiasts!
+            </p>
+            
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/greenscan" class="download-btn">
+                    <span>🍎</span>
+                    <span>Download on App Store</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.umin.greenscan" class="download-btn">
+                    <span>🤖</span>
+                    <span>Get it on Google Play</span>
+                </a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+                Available for iOS and Android
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 GreenScan. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                Made with 💚 for plant lovers everywhere
+            </p>
+        </footer>
     </div>
 
     <script>
-        // Parse URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const lat = urlParams.get('lat');
-        const lng = urlParams.get('lng');
-        const id = urlParams.get('id');
-        
-        const statusEl = document.getElementById('status');
-        const manualLink = document.getElementById('manual-link');
-        
-        // Log for debugging
-        console.log('Deep link params:', { lat, lng, id });
-        statusEl.textContent = `Location: ${lat}, ${lng} | Plant ID: ${id || 'None'}`;
-        
-        // Validate parameters
-        if (!lat || !lng) {
-            statusEl.textContent = '❌ Invalid link - missing location data';
-            document.querySelector('.info').textContent = 'This link appears to be invalid';
-            document.querySelector('.spinner').style.display = 'none';
-            return;
-        }
-        
-        // Construct deep link URL
-        const deepLink = `greenscan://map?lat=${lat}&lng=${lng}${id ? `&id=${id}` : ''}`;
-        console.log('Deep link:', deepLink);
-        
-        // Set manual link
-        manualLink.href = deepLink;
-        
-        // Try to open the app automatically
-        let attemptCount = 0;
-        const maxAttempts = 2;
-        
-        function attemptOpen() {
-            attemptCount++;
-            console.log(`Attempt ${attemptCount}: Opening deep link`);
-            statusEl.textContent = `Attempt ${attemptCount}: Opening app...`;
-            
-            try {
-                window.location.href = deepLink;
-            } catch (error) {
-                console.error('Failed to open deep link:', error);
-                statusEl.textContent = `❌ Error: ${error.message}`;
-            }
-            
-            // Retry after delay if not at max attempts
-            if (attemptCount < maxAttempts) {
-                setTimeout(attemptOpen, 2000);
-            } else {
-                statusEl.textContent = 'Please tap the button above to open the app';
-            }
-        }
-        
-        // Start first attempt after short delay
-        setTimeout(attemptOpen, 500);
-        
-        // Fallback: Show message if app didn't open after 4 seconds
-        setTimeout(() => {
-            if (document.visibilityState === 'visible') {
-                document.querySelector('.info').textContent = 'App not opening automatically?';
-                statusEl.textContent = '💡 Make sure GreenScan is installed';
-            }
-        }, 4000);
-        
-        // Detect if user navigated away (app opened)
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') {
-                console.log('✅ Page hidden - app likely opened!');
-            }
-        });
-        
-        // Update store link based on device
-        const storeLink = document.getElementById('store-link');
+        // Optional: Detect if mobile and show appropriate download button
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
         const isAndroid = /Android/.test(navigator.userAgent);
         
-        if (isIOS) {
-            storeLink.href = 'https://apps.apple.com/app/greenscan'; // Add your App Store link
-            storeLink.textContent = 'Download from App Store';
-        } else if (isAndroid) {
-            storeLink.href = 'https://play.google.com/store/apps/details?id=com.umin.greenscan'; // Add your Play Store link
-            storeLink.textContent = 'Download from Google Play';
-        } else {
-            storeLink.href = '#';
-            storeLink.textContent = 'Available on iOS and Android';
+        if (isIOS || isAndroid) {
+            console.log('Mobile device detected:', isIOS ? 'iOS' : 'Android');
         }
     </script>
 </body>
