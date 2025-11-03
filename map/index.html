@@ -1,225 +1,281 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Opening GreenScan...</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(135deg, #02542d 0%, #4caf50 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 20px;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo {
+        font-size: 64px;
+        margin-bottom: 20px;
+        animation: bounce 2s ease-in-out infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #02542D 0%, #4CAF50 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            padding: 20px;
+        50% {
+          transform: translateY(-10px);
         }
-        
-        .container {
-            text-align: center;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 25px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        
-        .logo {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: bounce 2s ease-in-out infinite;
+        100% {
+          transform: rotate(360deg);
         }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 25px auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .info {
-            font-size: 16px;
-            margin: 20px 0;
-            opacity: 0.95;
-        }
-        
-        .manual-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: white;
-            color: #02542D;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .manual-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        .secondary-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #E2F2E5;
-            text-decoration: underline;
-            font-size: 14px;
-        }
-        
-        .note {
-            margin-top: 30px;
-            font-size: 13px;
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        .status {
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: monospace;
-        }
+      }
+
+      .info {
+        font-size: 16px;
+        margin: 20px 0;
+        opacity: 0.95;
+      }
+
+      .manual-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 24px;
+        background: white;
+        color: #02542d;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .manual-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .secondary-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #e2f2e5;
+        text-decoration: underline;
+        font-size: 14px;
+      }
+
+      .note {
+        margin-top: 30px;
+        font-size: 13px;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      .status {
+        margin-top: 15px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        font-size: 12px;
+        font-family: monospace;
+        max-height: 150px;
+        overflow-y: auto;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="logo">🌱</div>
-        <h1>Opening GreenScan...</h1>
-        <div class="spinner"></div>
-        <p class="info">Redirecting to the app</p>
-        
-        <a href="#" id="manual-link" class="manual-link">
-            📱 Tap here if app doesn't open
-        </a>
-        
-        <p class="note">
-            <strong>Don't have GreenScan?</strong><br>
-            <a href="#" class="secondary-link" id="store-link">Download from App Store</a>
-        </p>
-        
-        <div class="status" id="status">
-            Preparing deep link...
-        </div>
+      <div class="logo">🌱</div>
+      <h1>Opening GreenScan...</h1>
+      <div class="spinner"></div>
+      <p class="info">Redirecting to the app</p>
+
+      <a href="#" id="manual-link" class="manual-link">
+        📱 Tap here if app doesn't open
+      </a>
+
+      <p class="note">
+        <strong>Don't have GreenScan?</strong><br />
+        <a href="#" class="secondary-link" id="store-link"
+          >Download from App Store</a
+        >
+      </p>
+
+      <div class="status" id="status">Preparing deep link...</div>
     </div>
 
     <script>
-        // Parse URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const lat = urlParams.get('lat');
-        const lng = urlParams.get('lng');
-        const id = urlParams.get('id');
-        
-        const statusEl = document.getElementById('status');
-        const manualLink = document.getElementById('manual-link');
-        
-        // Log for debugging
-        console.log('Deep link params:', { lat, lng, id });
-        statusEl.textContent = `Location: ${lat}, ${lng} | Plant ID: ${id || 'None'}`;
-        
-        // Validate parameters
-        if (!lat || !lng) {
-            statusEl.textContent = '❌ Invalid link - missing location data';
-            document.querySelector('.info').textContent = 'This link appears to be invalid';
-            document.querySelector('.spinner').style.display = 'none';
-            return;
+      // Parse URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const lat = urlParams.get("lat");
+      const lng = urlParams.get("lng");
+      const id = urlParams.get("id");
+
+      const statusEl = document.getElementById("status");
+      const manualLink = document.getElementById("manual-link");
+
+      // Helper to log status
+      function logStatus(message) {
+        console.log(message);
+        statusEl.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${message}</div>`;
+      }
+
+      // Log for debugging
+      logStatus(`Params: lat=${lat}, lng=${lng}, id=${id || "none"}`);
+
+      // Validate parameters
+      if (!lat || !lng) {
+        logStatus("❌ Invalid link - missing location data");
+        document.querySelector(".info").textContent =
+          "This link appears to be invalid";
+        document.querySelector(".spinner").style.display = "none";
+        return;
+      }
+
+      // Detect device
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAndroid = /Android/.test(navigator.userAgent);
+      logStatus(`Device: ${isIOS ? "iOS" : isAndroid ? "Android" : "Unknown"}`);
+
+      // Construct deep link URLs
+      const customSchemeLink = `greenscan://map?lat=${lat}&lng=${lng}${id ? `&id=${id}` : ""}`;
+      const httpsLink = `https://kamisama100.github.io/greenscan-app/map?lat=${lat}&lng=${lng}${id ? `&id=${id}` : ""}`;
+
+      logStatus(`Custom scheme: ${customSchemeLink}`);
+      logStatus(`HTTPS link: ${httpsLink}`);
+
+      // Try custom scheme first for immediate app opening
+      let attemptCount = 0;
+      const maxAttempts = 3;
+      let appOpened = false;
+
+      function attemptOpen() {
+        if (appOpened) return;
+
+        attemptCount++;
+        const linkToTry = attemptCount === 1 ? customSchemeLink : httpsLink;
+        const linkType = attemptCount === 1 ? "custom scheme" : "HTTPS";
+
+        logStatus(`Attempt ${attemptCount}: Trying ${linkType}...`);
+
+        try {
+          // Create invisible iframe to trigger deep link
+          const iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.src = linkToTry;
+          document.body.appendChild(iframe);
+
+          // Also try direct window.location for Android
+          if (isAndroid && attemptCount === 1) {
+            setTimeout(() => {
+              window.location.href = linkToTry;
+            }, 100);
+          }
+
+          // Remove iframe after a delay
+          setTimeout(() => {
+            document.body.removeChild(iframe);
+          }, 1000);
+
+          logStatus(`✓ ${linkType} triggered`);
+        } catch (error) {
+          logStatus(`❌ Error: ${error.message}`);
         }
-        
-        // Construct deep link URL
-        const deepLink = `greenscan://map?lat=${lat}&lng=${lng}${id ? `&id=${id}` : ''}`;
-        console.log('Deep link:', deepLink);
-        
-        // Set manual link
-        manualLink.href = deepLink;
-        
-        // Try to open the app automatically
-        let attemptCount = 0;
-        const maxAttempts = 2;
-        
-        function attemptOpen() {
-            attemptCount++;
-            console.log(`Attempt ${attemptCount}: Opening deep link`);
-            statusEl.textContent = `Attempt ${attemptCount}: Opening app...`;
-            
-            try {
-                window.location.href = deepLink;
-            } catch (error) {
-                console.error('Failed to open deep link:', error);
-                statusEl.textContent = `❌ Error: ${error.message}`;
-            }
-            
-            // Retry after delay if not at max attempts
-            if (attemptCount < maxAttempts) {
-                setTimeout(attemptOpen, 2000);
-            } else {
-                statusEl.textContent = 'Please tap the button above to open the app';
-            }
+
+        // Retry with different method after delay
+        if (attemptCount < maxAttempts && !appOpened) {
+          setTimeout(attemptOpen, 1500);
+        } else if (!appOpened) {
+          logStatus("💡 Please tap the button above to open manually");
+          document.querySelector(".info").textContent =
+            "Having trouble opening?";
         }
-        
-        // Start first attempt after short delay
-        setTimeout(attemptOpen, 500);
-        
-        // Fallback: Show message if app didn't open after 4 seconds
-        setTimeout(() => {
-            if (document.visibilityState === 'visible') {
-                document.querySelector('.info').textContent = 'App not opening automatically?';
-                statusEl.textContent = '💡 Make sure GreenScan is installed';
-            }
-        }, 4000);
-        
-        // Detect if user navigated away (app opened)
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') {
-                console.log('✅ Page hidden - app likely opened!');
-            }
-        });
-        
-        // Update store link based on device
-        const storeLink = document.getElementById('store-link');
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isAndroid = /Android/.test(navigator.userAgent);
-        
-        if (isIOS) {
-            storeLink.href = 'https://apps.apple.com/app/greenscan'; // Add your App Store link
-            storeLink.textContent = 'Download from App Store';
-        } else if (isAndroid) {
-            storeLink.href = 'https://play.google.com/store/apps/details?id=com.umin.greenscan'; // Add your Play Store link
-            storeLink.textContent = 'Download from Google Play';
-        } else {
-            storeLink.href = '#';
-            storeLink.textContent = 'Available on iOS and Android';
+      }
+
+      // Set manual link (prefer custom scheme)
+      manualLink.href = customSchemeLink;
+
+      // Start first attempt after short delay
+      setTimeout(attemptOpen, 500);
+
+      // Detect if user navigated away (app opened)
+      let wasHidden = false;
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden" && !wasHidden) {
+          wasHidden = true;
+          appOpened = true;
+          logStatus("✅ App opened successfully!");
         }
+      });
+
+      // Fallback: Show message if app didn't open after 5 seconds
+      setTimeout(() => {
+        if (document.visibilityState === "visible" && !appOpened) {
+          document.querySelector(".info").textContent =
+            "App not opening automatically?";
+          logStatus("⚠️ Auto-open failed. Tap the button above.");
+        }
+      }, 5000);
+
+      // Update store link based on device
+      const storeLink = document.getElementById("store-link");
+
+      if (isIOS) {
+        storeLink.href = "https://apps.apple.com/app/greenscan";
+        storeLink.textContent = "Download from App Store";
+      } else if (isAndroid) {
+        storeLink.href =
+          "https://play.google.com/store/apps/details?id=com.umin.greenscan";
+        storeLink.textContent = "Download from Google Play";
+      } else {
+        storeLink.href = "https://kamisama100.github.io/greenscan-app";
+        storeLink.textContent = "Available on iOS and Android";
+      }
     </script>
-</body>
+  </body>
 </html>
