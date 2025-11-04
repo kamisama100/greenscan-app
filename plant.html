@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opening GreenScan...</title>
+  </head>
+  <body>
+    <p>Opening GreenScan...</p>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id") || "";
+      const lat = params.get("lat") || "";
+      const lng = params.get("lng") || "";
+
+      // Try to open app
+      const deepLink = `greenscan://plant?id=${id}&lat=${lat}&lng=${lng}`;
+      window.location.href = deepLink;
+
+      // Android intent fallback
+      if (/Android/.test(navigator.userAgent)) {
+        setTimeout(() => {
+          window.location.href = `intent://plant?id=${id}&lat=${lat}&lng=${lng}#Intent;scheme=greenscan;package=com.umin.greenscan;end`;
+        }, 250);
+      }
+    </script>
+  </body>
+</html>
